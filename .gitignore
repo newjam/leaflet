@@ -1,0 +1,4 @@
+*.log
+target
+dependency-reduced-pom.xml
+deploy.sh

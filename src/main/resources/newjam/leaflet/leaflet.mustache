@@ -1,0 +1,74 @@
+<html>
+  <head>
+    <style>
+
+      * {
+        font-family: Sans-Serif;
+        box-sizing: border-box;
+        margin: 0;
+      }
+
+      body {
+        width: 8.26in;
+      }
+
+      .leaflet {
+        /* A6 page size */
+        width: 4.13in;
+        height: 5.83in;
+        border: 1px dashed black;
+        overflow: hidden;
+        display: inline-block;
+      }
+
+      @media print {
+        .leaflet {
+          width: 50%;
+          height: 50%;
+        }
+        header {
+          display: none;
+        }
+      }
+
+
+      .map {
+        width:100%;
+      }
+
+      .map-container {
+        width: 100%;
+      }
+
+      .when, .where-name, .where-address, .precinct{
+        font-weight: bold;
+      }
+
+      h1 {
+        text-align: center;
+        margin: 0.5em;
+      }
+
+      p, li {
+        margin: 0.5em;
+        font-size: 1.1em;
+      }
+
+      .map {
+        filter: grayscale(100%);
+        -webkit-filter: grayscale(100%);
+      }
+
+      .break-after {
+        page-break-after: always;
+      }
+
+    </style>
+  </head>
+  <body>
+    {{>controls}}
+    {{#model.data}}
+    {{>front}}{{>front}}{{>front}}{{>front}}<span class="break-after"></span>{{>back}}{{>back}}{{>back}}{{>back}}
+    {{/model.data}}
+  </body>
+</html>

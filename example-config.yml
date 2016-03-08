@@ -1,0 +1,5 @@
+googleServerKey: INSERT_YOUR_OWN_GOOGLE_KEY_HERE
+logging:
+  level: INFO
+  loggers:
+    newjam: DEBUG
