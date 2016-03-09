@@ -6,6 +6,7 @@ import com.google.maps.GeocodingApi;
 import com.google.maps.model.GeocodingResult;
 import java.util.HashMap;
 import java.util.Map;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -28,18 +29,25 @@ public class LeafletResource {
   }
   
   @GET @Timed @Produces(TEXT_HTML)
-  public LeafletView getHTML(@QueryParam("location") String location) throws Exception {
-    return new LeafletView(getJSON(location));
+  public LeafletView getHTML(@QueryParam("location") String location, @QueryParam("showMap") @DefaultValue("false") Boolean showMap) throws Exception {
+    return new LeafletView(getJSON(location, showMap));
   }
   
   @GET @Timed @Produces(APPLICATION_JSON)
-  public Map<String, Object> getJSON(@QueryParam("location") String location) throws Exception {
-    log.debug("servicing request for {}", location);
+  public Map<String, Object> getJSON(@QueryParam("location") String location, @QueryParam("showMap") @DefaultValue("true") Boolean showMap) throws Exception {
+    log.debug("servicing request for '{}'", location);
     
     Map<String, Object> model = new HashMap<>();
     model.put("location", location);
     
     if(location == null) {
+      // first time they visit show map should be true.
+      model.put("showMap", true);
+    } else {
+      model.put("showMap", showMap);
+    }
+    
+    if(location == null || location.isEmpty()) {
       log.debug("no location provided");
       model.put("locationMessage", "Please enter an address");
       return model;
@@ -48,7 +56,7 @@ public class LeafletResource {
     GeocodingResult[] results =  GeocodingApi.geocode(geoContext, location).await();
     
     if(results.length < 1) {
-      String message = "Could not find coordinates for " + location;
+      String message = "Could not find coordinates for '" + location + "'";
       log.warn(message);
       model.put("locationMessage", message);
       return model;
@@ -63,6 +71,8 @@ public class LeafletResource {
     log.debug(latLngQueryParam);
     
     Map<String, Object> object = foo.getCaucusSite("json", latLngQueryParam);
+    
+    log.info("Creating leaflets for precinct '{}'", object.get("pn"));
     
     if(object.containsKey("none") && (Integer)object.get("none") == 1) {
       String message = "Could not find a precinct for the coordinates " + latLngQueryParam + ".";

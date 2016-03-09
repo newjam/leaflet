@@ -2,3 +2,5 @@
 target
 dependency-reduced-pom.xml
 deploy.sh
+leaflet-config.yml
+leaflet.yml

@@ -3,6 +3,7 @@ package newjam.leaflet;
 import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;
 import io.dropwizard.Application;
+import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.dropwizard.views.ViewBundle;
@@ -29,6 +30,8 @@ public class LeafletApplication extends Application<LeafletConfiguration> {
   @Override
   public void initialize(Bootstrap<LeafletConfiguration> bootstrap) {
     bootstrap.addBundle(new ViewBundle<>());
+    // Serve files from src/main/resources/assets
+    bootstrap.addBundle(new AssetsBundle());
   }
   
 }

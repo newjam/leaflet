@@ -1,16 +1,28 @@
 <header>
     <h1>Leaflet Creator</h1>
-    <p>Creates a printable sheet of leaflets 4 for distributing in your neighborhood to get out the vote for caucus day</p>
+    <p>Creates a printable sheet of leaflets for distributing in your neighborhood to get out the vote for caucus day.</p>
     <ol>
-        <li>Enter Address</li>
-        <li>Submit</li>
-        <li>Print. Double sided so the back of the leaflets have caucus instructions</li>
-        <li>Distribute within your precinct. Warning!!! Read up on how precincts and caucuses work and their exact borders. Make sure not to distribute leaflets to the wrong people, for example telling them they live in a precinct they don't actually, or telling them to go to the wrong caucus site.</li>
+        <li>Enter your address</li>
+        <li>Submit to create your precinct specific leaflet</li>
+        <li>Print from your browser, or save as a pdf to print later. Print double sided.</li>
+        <li>Distribute leaflets within your precinct</li>
     </ol>
+    <p>
+        Warning!!! Read up on how precincts and caucuses work and their exact borders. Make sure not to distribute leaflets to the wrong people, for example telling them they live in a precinct they don't actually, or telling them to go to the wrong caucus site.
+    </p>
+    <p>
+        Precinct information is provided by <a href="http://41dems.org/gmap/caucus.html">41st District Democrats</a>.
+    </p>
     <form method="get">
-        <label>Address:
-        <input type="text" value="{{model.location}}" name="location"/>
-        <span>{{model.locationMessage}}</span></label>
+        <label>
+            Address
+            <input type="text" value="{{model.location}}" name="location"/>
+            <span>{{model.locationMessage}}</span>
+        </label>
+        <label>
+            Include Map
+            <input type="checkbox" name="showMap" value="true" {{#model.showMap}}checked{{/model.showMap}}/>
+        </label>
         <input type="submit" value="Submit" />
     </form>
 </header>
