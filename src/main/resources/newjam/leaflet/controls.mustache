@@ -13,17 +13,20 @@
     <p>
         Precinct information is provided by <a href="http://41dems.org/gmap/caucus.html">41st District Democrats</a>.
     </p>
+    <p>
+        Precincts already fliered: 129, 136, 205, 219, 225. If you would like to let us know if you've completed a precinct, email PeterAlbertSanderson@gmail.com.
+    </p>
     <form method="get">
-        <label>
-            Address
-            <input type="text" value="{{model.location}}" name="location"/>
-            <span>{{model.locationMessage}}</span>
-        </label>
-        <label>
-            Include Map
-            <input type="checkbox" name="showMap" value="true" {{#model.showMap}}checked{{/model.showMap}}/>
-            <span>If you include the map, but no map appears, there was an error creating the map for your precinct. Sorry!</span>
-        </label>
+        <label for="location">Address</label>
+        <input type="text" value="{{model.location}}" name="location"/>
+        <span>{{model.locationMessage}}</span>
+        <br/>
+        
+        <label for="showMap">Include Map</label>
+        <input type="checkbox" name="showMap" value="true" {{#model.showMap}}checked{{/model.showMap}}/>
+        <span>If no map appears there was an error creating your precinct map. Sorry!</span>
+        <br/>
+        
         <input type="submit" value="Submit" />
     </form>
 </header>

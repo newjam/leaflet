@@ -8,17 +8,17 @@ For now, use javascript to detect the issue and replace it with a nice image of 
 -->
 
 <img class="map" alt="Map to your precinct caucus site" src="https://maps.googleapis.com/maps/api/staticmap
-?size=600x500&markers=color:black|{{sy}},{{sx}}
+?style=feature:all|element:all|saturation:-100|gamma:0.5|visibility:simplified
+&size=600x500&markers=color:black|{{sy}},{{sx}}
 {{#pshp}}&path=color:black|fillcolor:0xBBBBBB|enc:{{points}}{{/pshp}}
 {{#sshp}}&path=color:black|fillcolor:0xBBBBBB|enc:{{points}}{{/sshp}}
-&style=feature:landscape|element:geometry.fill|color:0xffffff|visibility:on
-&style=feature:all|element:all|saturation:-100|gamma:0.5|visibility:simplified
-&style=feature:water|element:geometry|visibility:simplified
+&style=feature:landscape|element:geometry.fill|color:white|visibility:on
 &style=feature:administrative.locality|element:labels.text|visibility:on
 &style=feature:administrative.neighborhood|element:labels.text|visibility:on
-&style=feature:road|element:geometry.fill|color:0x000000
+&style=feature:road|element:geometry.fill|color:black
 &style=feature:poi|element:all|visibility:off
-&style=feature:road|element:labels|visibility:off" onerror="if (this.src != '/assets/sanders-full.png') this.src = '/assets/sanders-full.png';" />
+&style=feature:road|element:labels|visibility:off"
+onerror="if (this.src != '/assets/sanders-full.png') this.src = '/assets/sanders-full.png';" />
 {{/model.showMap}}
 {{^model.showMap}}
 <img class="map" alt="Bernie Sanders" src="/assets/sanders-full.png"/>
